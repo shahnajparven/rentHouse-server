@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 import path from "path";
 import AppRoutes from './routes/index.js';
 
-//import errorMidleware from "./middleware/error.js";
+import errorMidleware from "./middleware/error.js";
 
 //config 
 if (process.env.NODE_ENV !== "PRODUCTION") {
@@ -37,7 +37,7 @@ app.use('/api/v1', AppRoutes);
 
 
 //middleware for error
-//app.use(errorMidleware);
+app.use(errorMidleware);
 
 
 
