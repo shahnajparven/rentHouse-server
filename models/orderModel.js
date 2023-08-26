@@ -1,4 +1,4 @@
-import {Schema,model} from "mongoose";
+import {Schema,model,mongoose} from "mongoose";
 
 const orderSchema = new Schema({
   shippingInfo: {
@@ -48,14 +48,14 @@ const orderSchema = new Schema({
         required: true,
       },
       product: {
-        type: Schema.ObjectId,
+        type: mongoose.Schema.ObjectId,
         ref: "Product",
         required: true,
       },
     },
   ],
   user: {
-    type: Schema.ObjectId,
+    type: mongoose.Schema.ObjectId,
     ref: "User",
     required: true,
   },

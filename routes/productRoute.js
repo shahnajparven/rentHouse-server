@@ -22,7 +22,7 @@ router.post("/product/new",isAuthenticatedUser, authorizeRoles("user"), createPr
 
 router.put("/product/:id",isAuthenticatedUser, authorizeRoles("admin"), updateProduct)
 router.delete("/product/:id",isAuthenticatedUser, authorizeRoles("admin"), deleteProduct)
-router.get(getProductDetails);
+router.get("/product/:id",getProductDetails);
 
 router.put("/review",isAuthenticatedUser, createProductReview);
 

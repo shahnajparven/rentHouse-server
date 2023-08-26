@@ -1,4 +1,4 @@
-import {Schema,model} from "mongoose";
+import {Schema,model,mongoose} from "mongoose";
 
 const productSchema = new Schema({
   name: {
@@ -53,7 +53,7 @@ const productSchema = new Schema({
 reviews: [
   {
     user: {
-      type: Schema.ObjectId,
+      type: mongoose.Schema.ObjectId,
       ref: "User",
       required: true,
     },
@@ -73,7 +73,7 @@ reviews: [
 ],
 
 user: {
-  type: Schema.ObjectId,
+  type: mongoose.Schema.ObjectId,
   ref: "User",
   required: true,
 },

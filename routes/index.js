@@ -10,10 +10,10 @@ import { PaymentRoute } from './paymentRoute.js';
 const router = Router();
 
 // routes
-router.use('/order',orderRoute);
-router.use('/user',userRroute);
-router.use('/product',productRroute);
-router.use('/pickup',pickupRoute);
-router.use('/payment',PaymentRoute);
+router.use('/',orderRoute);
+router.use('/',userRroute);
+router.use('/',productRroute);
+router.use('/',pickupRoute);
+router.use('/',PaymentRoute);
 
 export default router;
