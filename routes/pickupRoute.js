@@ -1,25 +1,25 @@
-const express = require("express");
-const { createPickup, getAdminPickups, updatePickup, deletePickup } = require("../comtroller/pickupController");
-const {isAuthenticatedUser,authorizeRoles} = require("../middleware/auth")
+import { Router } from "express";
+import {
+  createPickup,
+  getAdminPickups,
+  updatePickup,
+  deletePickup,
+} from "../comtroller/pickupController.js";
+import { isAuthenticatedUser, authorizeRoles } from "../middleware/auth.js";
 
-const router = express.Router();
+const router = Router();
 
+router.get(
+  "/admin/pickups",
+  isAuthenticatedUser,
+  authorizeRoles("admin"),
+  getAdminPickups
+);
 
+router.post("/pickup/new", createPickup);
 
-router
-.route("/admin/pickups")
-.get(isAuthenticatedUser,authorizeRoles("admin"),getAdminPickups);
+router.put("/pickup/:id",isAuthenticatedUser, authorizeRoles("admin"), updatePickup)
+router.delete("/pickup/:id",isAuthenticatedUser, authorizeRoles("admin"), deletePickup);
 
-
-router
-.route("/pickup/new")
-.post(createPickup);
-
-router
-.route("/pickup/:id")
-.put(isAuthenticatedUser,authorizeRoles("admin"),updatePickup)
-.delete(isAuthenticatedUser,authorizeRoles("admin"),deletePickup);
-
-
-
-module.exports = router;
+// export default pickupRoute;
+export const pickupRoute = router;

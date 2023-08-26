@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import {Schema,model} from "mongoose";
 
-const pickupSchema = new mongoose.Schema({
+const pickupSchema = new Schema({
   from: {
     type: String,
     required: [true, "Please Enter where are you in"],
@@ -39,4 +39,5 @@ const pickupSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Pickup", pickupSchema);
+// module.exports = mongoose.model("Pickup", pickupSchema);
+export const Pickup = model('Pickup', pickupSchema);

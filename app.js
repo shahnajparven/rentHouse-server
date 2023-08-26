@@ -1,16 +1,17 @@
-const express = require("express");
+import  express from "express";
 const app = express();
-const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
-const fileUpload = require("express-fileupload");
-const dotenv = require("dotenv");
-const path = require("path");
+import cookieParser from "cookie-parser";
+import bodyParser from "body-parser";
+import fileUpload from "express-fileupload";
+import dotenv from "dotenv";
+import path from "path";
+import AppRoutes from './routes/index.js';
 
-const errorMidleware = require("./middleware/error");
+//import errorMidleware from "./middleware/error.js";
 
 //config 
 if (process.env.NODE_ENV !== "PRODUCTION") {
-  require("dotenv").config({ path: "config/config.env" });
+    dotenv.config({ path: "config/config.env" });
 }
 
 app.use(express.json())
@@ -19,26 +20,27 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
 
 //Route imports
-const product = require("./routes/productRoute");
-const user = require("./routes/userRoute");
-const pickup = require("./routes/pickupRoute");
-const order = require("./routes/orderRoute");
-const payment = require("./routes/paymentRoute");
+// import {product}  from "./routes/productRoute.js";
+// import {user} from "./routes/userRoute.js";
+// import {pickup} from "./routes/pickupRoute.js";
+// import {order} from "./routes/orderRoute.js";
+// import {payment} from "./routes/paymentRoute.js";
 
 
 //API
-app.use("/api/v1",product);
-app.use("/api/v1",user);
-app.use("/api/v1",pickup);
-app.use("/api/v1", order);
-app.use("/api/v1", payment);
+app.use('/api/v1', AppRoutes);
+// app.use("/api/v1",product);
+// app.use("/api/v1",user);
+// app.use("/api/v1",pickup);
+// app.use("/api/v1", order);
+// app.use("/api/v1", payment);
 
 
 //middleware for error
-app.use(errorMidleware);
+//app.use(errorMidleware);
 
 
 
-module.exports = app;
+export default app;
 
 

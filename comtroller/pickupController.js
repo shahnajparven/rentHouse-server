@@ -1,14 +1,14 @@
-const Pickup = require("../models/pickupModel");
-const ErrorHander = require("../utils/errorhander");
-const catchAsyncError = require("../middleware/catchAsyncError");
-const ApiFeatures = require("../utils/apifeatures");
-const cloudinary = require("cloudinary");
+import {Pickup} from "../models/pickupModel.js";
+import {ErrorHander} from "../utils/errorhander.js";
+import catchAsyncError from "../middleware/catchAsyncError.js";
+import {ApiFeatures} from "../utils/apifeatures.js";
+import cloudinary from "cloudinary";
 
 
 
 
 // Create Pickup request
-exports.createPickup = catchAsyncError(async (req, res, next) => {
+export const createPickup = catchAsyncError(async (req, res, next) => {
 
   const pickup = await Pickup.create(req.body);
 
@@ -19,7 +19,7 @@ exports.createPickup = catchAsyncError(async (req, res, next) => {
 });
 
 // get allpickup request (Admin)
-exports.getAdminPickups = catchAsyncError(async (req, res, next) => {
+export const getAdminPickups = catchAsyncError(async (req, res, next) => {
   const pickups = await Pickup.find();
 
   res.status(200).json({
@@ -30,7 +30,7 @@ exports.getAdminPickups = catchAsyncError(async (req, res, next) => {
 
 // Update Pickup -- Admin
 
-exports.updatePickup = catchAsyncError(async (req, res, next) => {
+export const updatePickup = catchAsyncError(async (req, res, next) => {
   let pickup = await Pickup.findById(req.params.id);
 
   if (!pickup) {
@@ -52,7 +52,7 @@ exports.updatePickup = catchAsyncError(async (req, res, next) => {
 
 // Delete Pickup
 
-exports.deletePickup = catchAsyncError(async (req, res, next) => {
+export const deletePickup = catchAsyncError(async (req, res, next) => {
   const pickup = await Pickup.findById(req.params.id);
 
   if (!pickup) {

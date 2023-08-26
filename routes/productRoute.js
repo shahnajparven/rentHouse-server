@@ -1,35 +1,32 @@
-const express = require("express");
-const { getAllProducts,getProductDetails,createProduct,updateProduct,deleteProduct,createProductReview, deleteReview, getProductReviews, getAdminProducts} = require("../comtroller/productcontroller");
-const { isAuthenticatedUser,authorizeRoles} = require("../middleware/auth");
-const router = express.Router();
+import {Router} from "express";
+import {
+  getAllProducts,
+  getProductDetails,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  createProductReview,
+  deleteReview,
+  getProductReviews,
+  getAdminProducts,
+} from "../comtroller/productcontroller.js";
+import { isAuthenticatedUser, authorizeRoles } from "../middleware/auth.js";
+const router = Router();
 
-router
-.route("/products")
-.get(getAllProducts);
+router.get("/products",getAllProducts);
 
-router
-.route("/admin/products")
-.get(isAuthenticatedUser,authorizeRoles("admin"),getAdminProducts);
+router.get("/admin/products",isAuthenticatedUser, authorizeRoles("admin"), getAdminProducts);
 
-
-router
-.route("/product/new")
-.post(isAuthenticatedUser,authorizeRoles("user"),createProduct);
-
-router
-.route("/product/:id")
-.put(isAuthenticatedUser,authorizeRoles("admin"),updateProduct)
-.delete(isAuthenticatedUser,authorizeRoles("admin"),deleteProduct)
-.get(getProductDetails);
+router.post("/product/new",isAuthenticatedUser, authorizeRoles("user"), createProduct);
 
 
+router.put("/product/:id",isAuthenticatedUser, authorizeRoles("admin"), updateProduct)
+router.delete("/product/:id",isAuthenticatedUser, authorizeRoles("admin"), deleteProduct)
+router.get(getProductDetails);
 
-router.route("/review").put(isAuthenticatedUser, createProductReview);
+router.put("/review",isAuthenticatedUser, createProductReview);
 
-router
-  .route("/reviews")
-  .get(getProductReviews)
-  .delete(deleteReview);
+router.get("/reviews",getProductReviews).delete(deleteReview);
 
 // router
 // .route("/review").put(isAuthenticatedUser,createProductReview);
@@ -39,5 +36,5 @@ router
 //   .get(getProductReviews)
 //   .delete(isAuthenticatedUser, deleteReview);
 
-
-module.exports = router;
+// export default productRroute;
+export const productRroute = router;
