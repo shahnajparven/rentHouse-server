@@ -13,14 +13,16 @@ import errorMidleware from "./middleware/error.js";
 const app = express();
 
 const options = [
-    cors({ origin: true, credentials: true }),
-    express.json({ limit: '30mb' }),
     cookieParser(),
+    //  cors({ origin: ['http://localhost:5173'], credentials: true }),
+     cors({ origin: true, credentials: true }),
+    express.json({ limit: '30mb' }),
     bodyParser.urlencoded({ extended: true }),
     fileUpload()
 ];
 
 app.use("*",options);
+// app.use(cookieParser());
 
 
 //config 
@@ -35,7 +37,7 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 
 
 //API
-app.use('/api/v1', AppRoutes);
+app.use('/api/v1/', AppRoutes);
 
 
 //middleware for error

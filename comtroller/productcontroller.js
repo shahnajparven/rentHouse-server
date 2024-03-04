@@ -33,12 +33,13 @@ export const createProduct = catchAsyncError(async (req, res, next) => {
 
   req.body.images = imagesLinks;
   req.body.user = req.user.id;
+
   const product = await Product.create(req.body);
 
   res.status(201).json({
     success: true,
-    product
-  })
+    product,
+  });
 });
 
 
@@ -61,6 +62,7 @@ export const getAllProducts = catchAsyncError(async (req, res, next) => {
     productsCount,
     resultPerPage,
     filteredProductsCount,
+   
   });
 });
 

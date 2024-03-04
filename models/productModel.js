@@ -3,22 +3,21 @@ import {Schema,model,mongoose} from "mongoose";
 const productSchema = new Schema({
   name: {
     type: String,
-    required: [true, "Please Enter Location"],
-   
+    required: [true, "Please Enter product Name"],
+    
   },
   location: {
     type: String,
-    required: [true, "Please Enter House Name"],
-    trim: true,
+    required: [true, "Please Enter product location"],
   },
   description: {
     type: String,
-    required: [true, "Please Enter House Description"],
+    required: [true, "Please Enter product Description"],
   },
   price: {
     type: Number,
-    required: [true, "Please Enter House Price"],
-    maxLength: [8, "Price cannot exceed 8 characters"],
+    required: [true, "Please Enter product Price"],
+    
   },
   ratings: {
     type: Number,
@@ -40,47 +39,41 @@ const productSchema = new Schema({
     type: String,
     required: [true, "Please Enter Product Category"],
   },
-  Stock: {
-    type: Number,
-    required: [true, "Please Enter product Stock"],
-    maxLength: [4, "Stock cannot exceed 4 characters"],
-    default: 1,
-  },
   numOfReviews: {
     type: Number,
     default: 0,
   },
-reviews: [
-  {
-    user: {
-      type: mongoose.Schema.ObjectId,
-      ref: "User",
-      required: true,
+  reviews: [
+    {
+      user: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+        required: true,
+      },
+      name: {
+        type: String,
+        required: true,
+      },
+      rating: {
+        type: Number,
+        required: true,
+      },
+      comment: {
+        type: String,
+        required: true,
+      },
     },
-    name: {
-      type: String,
-      required: true,
-    },
-    rating: {
-      type: Number,
-      required: true,
-    },
-    comment: {
-      type: String,
-      required: true,
-    },
-  },
-],
+  ],
 
-user: {
-  type: mongoose.Schema.ObjectId,
-  ref: "User",
-  required: true,
-},
-createdAt: {
-  type: Date,
-  default: Date.now,
-},
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 export const Product = model('Product', productSchema);

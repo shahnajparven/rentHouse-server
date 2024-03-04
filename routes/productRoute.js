@@ -13,11 +13,11 @@ import {
 import { isAuthenticatedUser, authorizeRoles } from "../middleware/auth.js";
 const router = Router();
 
-router.get("/products",getAllProducts);
+router.get("/products" , getAllProducts);
 
 router.get("/admin/products",isAuthenticatedUser, authorizeRoles("admin"), getAdminProducts);
 
-router.post("/product/new",isAuthenticatedUser, authorizeRoles("user"), createProduct);
+router.post("/product/new",isAuthenticatedUser, createProduct);
 
 
 router.put("/product/:id",isAuthenticatedUser, authorizeRoles("admin"), updateProduct)
