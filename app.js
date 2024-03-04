@@ -22,8 +22,6 @@ const options = [
 ];
 
 app.use("*",options);
-// app.use(cookieParser());
-
 
 //config 
 if (process.env.NODE_ENV !== "PRODUCTION") {
