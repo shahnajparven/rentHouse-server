@@ -1,6 +1,7 @@
 import catchAsyncErrors from "../middleware/catchAsyncError.js";
 
-import stripe from "stripe"; process.env.STRIPE_SECRET_KEY;
+import stripe from "stripe";
+process.env.STRIPE_SECRET_KEY;
 
 export const processPayment = catchAsyncErrors(async (req, res, next) => {
   const myPayment = await stripe.paymentIntents.create({
@@ -17,5 +18,5 @@ export const processPayment = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const sendStripeApiKey = catchAsyncErrors(async (req, res, next) => {
-  res.status(200).json({ stripeApiKey: process.env.STRIPE_API_KEY});
+  res.status(200).json({ stripeApiKey: process.env.STRIPE_API_KEY });
 });

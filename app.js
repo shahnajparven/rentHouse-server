@@ -1,11 +1,9 @@
 import  express from "express";
 import cors from 'cors';
-
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import fileUpload from "express-fileupload";
 import dotenv from "dotenv";
-import path from "path";
 import AppRoutes from './routes/index.js';
 
 import errorMidleware from "./middleware/error.js";

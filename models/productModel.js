@@ -39,6 +39,10 @@ const productSchema = new Schema({
     type: String,
     required: [true, "Please Enter Product Category"],
   },
+  Stock: {
+    type: Number,
+    default: 1,
+  },
   numOfReviews: {
     type: Number,
     default: 0,
